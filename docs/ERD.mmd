@@ -1,0 +1,49 @@
+erDiagram
+  USERS {
+    int UserID PK
+    varchar FullName
+    varchar Email
+    varchar PasswordHash
+    varchar Role
+    datetime CreatedAt
+    datetime UpdatedAt
+  }
+  GUESTS {
+    int id PK
+    varchar FullName
+    varchar Email
+    varchar Phone
+    datetime createdAt
+    datetime updatedAt
+  }
+  ROOMS {
+    int id PK
+    varchar RoomNumber
+    varchar RoomType
+    decimal Rate
+    varchar Status
+    datetime createdAt
+    datetime updatedAt
+  }
+  RESERVATIONS {
+    int id PK
+    date CheckInDate
+    date CheckOutDate
+    varchar Status
+    int GuestID FK
+    int RoomID FK
+    datetime createdAt
+    datetime updatedAt
+  }
+  INVOICES {
+    int id PK
+    varchar InvoiceNumber
+    decimal TotalAmount
+    varchar PaymentStatus
+    int ReservationID FK
+    datetime createdAt
+    datetime updatedAt
+  }
+  GUESTS ||--o{ RESERVATIONS : has
+  ROOMS ||--o{ RESERVATIONS : has
+  RESERVATIONS ||--o{ INVOICES : has
